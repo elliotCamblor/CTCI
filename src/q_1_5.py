@@ -1,6 +1,6 @@
 def countCompression(pStr): 
     if len(pStr) < 2:
-        return len(Str)
+        return len(pStr)
     
     lastC = pStr[0]
     count = 1
@@ -8,7 +8,7 @@ def countCompression(pStr):
     for c in pStr[1:]:
         if c == lastC:
             count += 1
-        else
+        else:
             sLength += len(str(count)) + 1
             lastC = c
             count = 1
@@ -34,4 +34,10 @@ def compress(pStr):
     return ''.join(sList)
 
 if __name__ == "__main__":
-
+    str0 = "aaabbcdddd"
+    assert(compress(str0) == "a3b2c1d4")
+    str1 = "absndual"
+    assert(compress(str1) == str1)
+    str2 = 'a'
+    assert(compress(str2) == str2)
+    print("success")
