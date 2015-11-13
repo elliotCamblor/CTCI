@@ -1,0 +1,7 @@
+env = Environment(CPPPATH='#',
+                CPPDEFINES=[],
+                LIBS=[],
+                CXXFLAGS='-std=c++0x'
+                )
+
+env.Program("q_1_7.cpp")
