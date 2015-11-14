@@ -3,11 +3,14 @@ from HSLinkedList import *
 def getFirstNodeInLoop(n):
     a = b = n
 
-    while True:
+    while (b is not None) and (b.next is not None):
         a = a.next
         b = b.next.next
         if a is b:
             break
+
+    if (b is None) or (b.next is None):
+        return None
 
     a = n
     while True:
