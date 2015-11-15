@@ -1,15 +1,14 @@
-class Stack:
+class Stack(list):
     def __init__(self):
-        self.buf = []
         self.mins = []
 
     def push(self, i):
-        if not len(self.mins) or i < self.mins[-1]:
+        if not len(self.mins) or i <= self.mins[-1]:
             self.mins.append(i)
-        self.buf.append(i)
+        self.append(i)
     
     def pop(self):
-        i = self.buf.pop()
+        i = super().pop()
         if i == self.mins[-1]:
             self.mins.pop()
         return i
