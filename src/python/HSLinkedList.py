@@ -2,6 +2,16 @@ class Node:
     def __init__(self, i):
         self.next = None
         self.data = i
+    
+    @classmethod
+    def GetFromList(cls, lst):
+        node = cls(lst[0])
+        end = node
+        for i in range(1, len(lst)):
+            end.next = cls(lst[i])
+            end = end.next
+
+        return node
 
     def __len__(self):
         count = 0
