@@ -1,4 +1,4 @@
-from HSLinkedList import Node
+from lib.HSLinkedList import Node
 
 def removeDuplicates(head):
     n = head
