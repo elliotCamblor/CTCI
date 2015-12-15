@@ -11,38 +11,62 @@ class BinaryTreeNode:
         self.left = None
         self.key = k
 
-    @staticmethod
-    def getInOrder(root, outList):
-        if root == None:
-            return
-
-        getInOrder(root.left, outList)
-        outList.append(root.key)
-        getInOrder(root.left, outList)
-
-    @staticmethod
-    def getPreOrder(root, outList):
-        if root == None:
-            return
-
-        outList.append(root.key)
-        getPreOrder(root.left, outList)
-        getPreOrder(root.right, outList)
-
-    @staticmethod
-    def getPostOrder(root, outList):
-        if root == None:
-            return
-
-       getPostOrder(root.left, outList)
-       getPostOrder(root.right, outList)
-       outList.append(root.key)
-    
     @classmethod
-    def buildTree(inOrderList, preOrderList):
-        assert(len(inOrderList) == len(preOrderList))
+    def __printInOrder(cls, root):
+        if root == None:
+            return
 
+        cls.__printInOrder(root.left)
+        print(root.key, end=', ')
+        cls.__printInOrder(root.right)
 
+    @classmethod
+    def printInOrder(cls, root):
+        cls.__printInOrder(root)
+        print()
 
+    @classmethod
+    def __printPreOrder(cls, root):
+        if root == None:
+            return
 
+        print(root.key, end=', ')
+        cls.__printPreOrder(root.left)
+        cls.__printPreOrder(root.right)
 
+    @classmethod
+    def printPreOrder(cls, root):
+        cls.__printPreOrder(root)
+        print()
+
+    @classmethod
+    def __printPostOrder(cls, root):
+        if root == None:
+            return
+        
+        cls.__printPostOrder(root.left)
+        cls.__printPostOrder(root.right)
+        print(root.key, end=', ')
+
+    @classmethod
+    def printPostOrder(cls, root):
+        cls.__printPostOrder(root)
+        print()
+
+    @classmethod
+    def __buildTree(cls, preOrder, inOrder, inStart, inEnd):
+        if inStart > inEnd:
+            return None
+
+        node = cls(preOrder[cls.i])
+        cls.i += 1
+        k = inOrder.index(node.key)
+
+        node.left = cls.__buildTree(preOrder, inOrder, inStart, k - 1)
+        node.right = cls.__buildTree(preOrder, inOrder, k + 1, inEnd)
+        return node
+
+    @classmethod
+    def buildTree(cls, preOrder, inOrder):
+        cls.i = 0
+        return cls.__buildTree(preOrder, inOrder, 0, len(inOrder) - 1)
