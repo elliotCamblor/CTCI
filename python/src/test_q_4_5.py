@@ -12,6 +12,7 @@ class testcase1(unittest.TestCase):
         for test in self.tests:
             root = BinaryTreeNode.buildTree(test[1], test[0])
             self.assertEqual(isBST(root), test[2])
+            self.assertEqual(isBST2(root), test[2])
 
 if __name__ == "__main__":
    unittest.main() 
