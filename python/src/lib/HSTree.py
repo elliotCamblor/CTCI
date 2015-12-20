@@ -26,6 +26,15 @@ class BinaryTreeNode:
         print()
 
     @classmethod
+    def getInOrderGenerator(cls, root):
+        if root == None:
+            return
+
+        yield from cls.getInOrderGenerator(root.left)
+        yield root.key
+        yield from cls.getInOrderGenerator(root.right)
+
+    @classmethod
     def __printPreOrder(cls, root):
         if root == None:
             return
@@ -40,6 +49,15 @@ class BinaryTreeNode:
         print()
 
     @classmethod
+    def getPreOrderGenerator(cls, root):
+        if root == None:
+            return
+
+        yield root.key
+        yield from cls.getPreOrderGenerator(root.left)
+        yield from cls.getPreOrderGenerator(root.right)
+    
+    @classmethod
     def __printPostOrder(cls, root):
         if root == None:
             return
@@ -52,6 +70,15 @@ class BinaryTreeNode:
     def printPostOrder(cls, root):
         cls.__printPostOrder(root)
         print()
+
+    @classmethod
+    def getPostOrderGenerator(cls, root):
+        if root == None:
+            return
+
+        yield from cls.getPostOrderGenerator(root.left)
+        yield from cls.getPostOrderGenerator(root.right)
+        yield root.key
 
     @classmethod
     def __buildTree(cls, preOrder, inOrder, inStart, inEnd):
