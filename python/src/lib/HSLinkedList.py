@@ -2,6 +2,7 @@ class Node:
     def __init__(self, i):
         self.next = None
         self.data = i
+        self.tail = self
     
     @classmethod
     def GetFromList(cls, lst):
@@ -32,12 +33,9 @@ class Node:
         return str(l)
 
     def appendToTail(self, d):
-        end = Node(d)
-        n = self
-        while (n.next != None):
-            n = n.next
-        n.next = end
-    
+        self.tail.next = Node(d)
+        self.tail = self.tail.next
+
     @staticmethod
     def removeFromNode(head, d):
         n = head
