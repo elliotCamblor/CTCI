@@ -1,17 +1,14 @@
 import math
 
 class BinaryTreeNode:
-    def __init__(self):
-        self.left = None
-        self.right = None
-        self.parent = None
-        self.key = 0
-
-    def __init__(self, k):
-        self.right = None
-        self.left = None
-        self.parent = None
+    def __init__(self, k=0, right=None, left=None, parent=None):
+        self.right = right
+        self.left = left
+        self.parent = parent
         self.key = k
+    
+    def __eq__(self, other):
+        return self.key == other.key if other else False
 
     @classmethod
     def __printInOrder(cls, root):
