@@ -7,10 +7,10 @@ class Node:
     @classmethod
     def GetFromList(cls, lst):
         node = cls(lst[0])
-        end = node
+        self.tail = node
         for i in range(1, len(lst)):
-            end.next = cls(lst[i])
-            end = end.next
+            self.tail.next = cls(lst[i])
+            self.tail = self.tail.next
 
         return node
 
