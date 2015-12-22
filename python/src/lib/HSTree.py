@@ -4,11 +4,13 @@ class BinaryTreeNode:
     def __init__(self):
         self.left = None
         self.right = None
+        self.parent = None
         self.key = 0
 
     def __init__(self, k):
         self.right = None
         self.left = None
+        self.parent = None
         self.key = k
 
     @classmethod
@@ -90,7 +92,11 @@ class BinaryTreeNode:
         k = inOrder.index(node.key)
 
         node.left = cls.__buildTree(preOrder, inOrder, inStart, k - 1)
+        if node.left:
+            node.left.parent = node
         node.right = cls.__buildTree(preOrder, inOrder, k + 1, inEnd)
+        if node.right:
+            node.right.parent = node
         return node
 
     @classmethod
