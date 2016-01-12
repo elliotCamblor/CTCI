@@ -19,3 +19,23 @@ def __getSubsets(wholeSet, index):
 
 def getSubsets(wholeSet):
     return __getSubsets(wholeSet, 0)
+
+def getSubsets2(wholeSet):
+    allSubsets = []
+    maxK = 1 << len(wholeSet)
+
+    for k in range(maxK):
+        allSubsets.append(__getSetFromInt(wholeSet, k))
+
+    return allSubsets
+
+def __getSetFromInt(arr, k):
+    subset = []
+    i = 0
+    while k:
+        if k & 1 == 1:
+            subset.append(arr[i])
+        i += 1
+        k >>= 1
+
+    return subset
