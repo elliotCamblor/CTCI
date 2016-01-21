@@ -7,12 +7,12 @@ class testcase1(unittest.TestCase):
         num = 5
         chopSticks = []
         for i in range(num):
-            chopSticks.append(Chopstick())
+            chopSticks.append(Chopstick(str(i)))
 
         philosophers = []
         for i in range(num):
             j = i + 1 if i + 1< len(chopSticks) else 0
-            philosophers.append(Philosopher(chopSticks[i], chopSticks[j]))
+            philosophers.append(Philosopher(str(i), chopSticks[i], chopSticks[j]))
 
         for i in range(num): 
             philosophers[i].start()

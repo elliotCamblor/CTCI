@@ -1,8 +1,10 @@
+import time
 from threading import Thread, RLock
 
 class Chopstick:
-    def __init__(self):
+    def __init__(self, name):
         self.lock = RLock()
+        self.name = name
 
     def pickUp(self):
         return self.lock.acquire(blocking=False)
@@ -11,17 +13,20 @@ class Chopstick:
         self.lock.release()
 
 class Philosopher(Thread):
-    def __init__(self, left, right):
+    def __init__(self, name, left, right):
         super().__init__()
         self.left = left
         self.right = right
         self.bites = 10
         self.success = False
+        self.name = name
 
     def eat(self):
-        if self.pickUp():
-            self.chew()
-            self.putDown()
+        while True:
+            if self.pickUp():
+                self.chew()
+                self.putDown()
+                break
 
     def pickUp(self):
         if not self.left.pickUp():
@@ -34,7 +39,8 @@ class Philosopher(Thread):
         return True
 
     def chew(self):
-        pass
+        print("%s chews" % self.name)
+        time.sleep(0.001)
 
     def putDown(self):
         self.left.putDown()
