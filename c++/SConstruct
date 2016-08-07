@@ -3,6 +3,7 @@ env = Environment(CPPPATH='#',
                 LIBS=[],
                 CXXFLAGS='-std=c++0x'
                 )
-src = ["q_1_2.cpp", "q_1_6.cpp"]
+#src = ["q_1_2.cpp", "q_1_6.cpp"]
+src = ["practice.cpp"]
 for file in src: 
     env.Program(file)

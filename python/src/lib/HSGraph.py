@@ -38,3 +38,10 @@ class Graph:
                     self.allVertices.append(self.vertices[value])
                 
                 self.adjacent[key].append(self.vertices[value])
+
+#another one
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.visited = False
+        self.adjacent = []
