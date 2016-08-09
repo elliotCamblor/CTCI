@@ -1,4 +1,4 @@
-from HSLinkedList import Node
+from lib.HSLinkedList import Node
 from queue import *
 
 def kthLastRecursive(node, k, result):
@@ -32,6 +32,18 @@ def kthLast(node, k):
         node = node.next
     return q.get(False)
 
+def kthLastRecursive2(node, k):
+    if not node:
+        return 0, None
+
+    i, r = kthLastRecursive2(node.next, k)
+    i += 1
+    if i == k:
+        return i, node
+
+    return i, r
+        
+
 if __name__ == "__main__":
     n = Node(0)
     n.appendToTail(2)
@@ -47,5 +59,7 @@ if __name__ == "__main__":
     assert(r.data == 7)
     r = kthLast(n, 4)
     assert(r.data == 6)
+    _, r = kthLastRecursive2(n, 3)
+    assert(r.data == 7)
 
     print("success")

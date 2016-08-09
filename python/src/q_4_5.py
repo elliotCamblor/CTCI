@@ -1,3 +1,4 @@
+import math
 from lib.HSTree import BinaryTreeNode
 
 def isBST(root):
@@ -18,4 +19,4 @@ def __isBST2(root, minimum, maximum):
 
 #get actual minimum and maximum int when you have access to internet
 def isBST2(root):
-    return __isBST2(root, 0, 10000000) 
+    return __isBST2(root, -math.inf, math.inf) 
